@@ -1,1 +1,60 @@
 {% extends "base.html" %}
+
+{% block content %}
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Обучающая система по компьютерным сетям</h1>
+    <p class="lead text-muted">Интерактивное обучение основам компьютерных сетей с проверкой знаний и отслеживанием прогресса</p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title h4 text-primary">О проекте</h3>
+          <p class="card-text">
+            Эта обучающая система создана для студентов и всех, кто хочет изучить основы компьютерных сетей.
+            Мы предлагаем структурированные лекции, практические тесты и отслеживание вашего прогресса.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title h4 text-primary">Что вы получите</h3>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Структурированные лекции по ключевым темам</li>
+            <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Интерактивные тесты для проверки знаний</li>
+            <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> Отслеживание прогресса обучения</li>
+            <li><i class="bi bi-check-circle text-success me-2"></i> Адаптация сложности под ваш уровень</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-light rounded-3 p-4 mt-5">
+    <h3 class="h5 text-center mb-4">Основные темы курса</h3>
+    <div class="row text-center">
+      <div class="col-md-4 mb-3">
+        <span class="badge bg-primary fs-6">IP‑адресация и подсети</span>
+      </div>
+      <div class="col-md-4 mb-3">
+        <span class="badge bg-primary fs-6">Сетевые протоколы</span>
+      </div>
+      <div class="col-md-4 mb-3">
+        <span class="badge bg-primary fs-6">Основы маршрутизации</span>
+      </div>
+      <div class="col-md-4">
+        <span class="badge bg-primary fs-6">Безопасность сетей</span>
+      </div>
+      <div class="col-md-4">
+        <span class="badge bg-primary fs-6">Топологии сетей</span>
+      </div>
+      <div class="col-md-4">
+        <span class="badge bg-primary fs-6">Настройка сетевого оборудования</span>
+      </div>
+    </div>
+  </div>
+{% endblock %}
