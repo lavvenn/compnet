@@ -12,7 +12,13 @@ class Topic(models.Model):
 
     name = models.TextField('название')
     description = models.TextField('описание')
-    complexity = ComplexityChoices.choices
+    complexity = models.PositiveSmallIntegerField(
+        'сложность',
+        choices=ComplexityChoices.choices,
+        null=True,
+        blank=True,
+    )
+
 
     def __str__(self):
         return self.name
