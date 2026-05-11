@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Список пользователей</h2>
+    <div class="row">
+        {% for user in users %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                {% if user.profile.image.url != ''%}
+                <img src="{{ user.profile.image.url }}" class="card-img-top" alt="Фото {{ user.username }}">
+                {% else %}
+                <img src="{% static 'img/sad_cat.jpg' %}" class="card-img-top" alt="Фото по умолчанию">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    {% if user.profile.birthday %}
+                        <p class="card-text">День рождения: {{ user.profile.birthday|date:"d m"  }}</p>
+                    {% else %}
+                        <p class="card-text text-muted">Дата рождения не указана</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Пользователи не найдены.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

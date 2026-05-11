@@ -1,0 +1,56 @@
+{% extends 'base.html' %}  <!-- Наследование от базового шаблона -->
+
+{% block title %}О нас —{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">О нас</h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead mb-4">
+                        Добро пожаловать на страницу «О нас»! Здесь вы узнаете больше о нашей команде, миссии и ценностях.
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Наша миссия</h5>
+                            <p>
+                                Наша миссия — создавать качественные веб-решения, которые помогают бизнесу расти и развиваться.
+                                Мы стремимся к инновациям, придерживаемся высоких стандартов качества и всегда ориентируемся на потребности клиентов.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Наши ценности</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Честность и прозрачность</li>
+                                <li class="list-group-item">Клиентоориентированность</li>
+                                <li class="list-group-item">Профессионализм и ответственность</li>
+                                <li class="list-group-item">Непрерывное обучение и развитие</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h5>Наша команда</h5>
+                    <hr>
+
+                    <h5>Контакты</h5>
+                    <address>
+                        <strong>Адрес:</strong> г. Москва, ул. Примерная, д. 123<br>
+                        <strong>Телефон:</strong> +7 (495) 123-45-67<br>
+                        <strong>Email:</strong> info@example.com<br>
+                        <strong>Соцсети:</strong>
+                        <a href="https://vk.com/example">VK</a>,
+                        <a href="https://telegram.me/example">Telegram</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

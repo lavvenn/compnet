@@ -1,3 +1,5 @@
+{% with request.resolver_match.view_name as view_name %}
+
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
@@ -5,14 +7,41 @@
         </a>
       </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="nav-link px-2 link-secondary">Домашняя страницв</a></li>
-        <li><a href="#" class="nav-link px-2">Темы</a></li>
-        <li><a href="#" class="nav-link px-2">О нас</a></li>
-      </ul>
+        <ul class="nav nav-pills col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li class="nav-item">
+            <a href="{% url 'homepage:home' %}" class="nav-link px-2 {% if view_name == 'homepage:home' %}active{% endif %}">
+              Домашняя страница
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'topics:topic_list' %}" class="nav-link px-2 {% if view_name == 'topics:topic_list' %}active{% endif %}">
+              Темы
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'about:aboutus' %}" class="nav-link px-2 {% if view_name == 'about:aboutus' %}active{% endif %}">
+              О нас
+            </a>
+          </li>
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Войти</button>
-        <button type="button" class="btn btn-primary">Регистрация</button>
-      </div>
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a href="" class="nav-link {% if view_name == 'users:profile' %}active{% endif %} ">Профиль</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a href="{% url 'users:login' %}" class="nav-link {% if view_name == 'users:login' %}active{% endif %}"> войти </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:signup' %}" class="nav-link {% if view_name == 'users:signup' %}active{% endif %}">регистрация</a>
+          </li>
+        {% endif %}
+        {% if request.user.is_authenticated and request.user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">admin panel</a>
+          </li>
+        {% endif %}
+          
+        </ul>
     </header>
+{% endwith %}

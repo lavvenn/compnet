@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Активация аккаунта</h2>
+    <div class="alert alert-info" role="alert">
+        {{ message }}
+    </div>
+    <a href="{% url 'homepage:home' %}" class="btn btn-primary">Перейти на главную</a>
+</div>
+{% endblock %}

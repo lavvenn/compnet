@@ -1,0 +1,13 @@
+<div class="col-12 col-md-4 mb-4">
+  <div class="card h-100">
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ topic.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">уровень сложности: {{ topic.get_complexity_display }}</h6>
+
+      <p class="card-text">{{ topic.description | truncatewords_html:10 | safe }}</p>
+
+      <a href={% url 'topics:topic' topic.pk %} class="btn btn-primary mt-auto">Изучить</a>
+      <h6 class="card-subtitle mb-2">
+      </div>
+    </div>
+  </div>

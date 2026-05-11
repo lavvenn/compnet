@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Информация о пользователе {{ user.username }}</h2>
+  <div class="user-detail">
+    {% if user.profile.image %}
+    <img src="{{ user.profile.image.url }}" alt="Фото {{ user.username }}"
+         class="img-thumbnail" style="max-width: 200px;">
+    {% else %}
+    <img src="{% static 'img/default.jpg' %}" alt="Фото по умолчанию"
+         class="img-thumbnail" style="max-width: 200px;">
+    {% endif %}
+
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <p><strong>Имя:</strong>
+      {% if user.first_name %}
+      {{ user.first_name }}
+      {% else %}
+      <span style="font-style: italic; color: gray;">не указано</span>
+      {% endif %}
+    </p>
+
+
+    <p><strong>Дата рождения:</strong>
+      {% if user.profile.birthday %}
+      {{ user.profile.birthday|date:"j E" }}
+      {% else %}
+      <span style="font-style: italic; color: gray;">не указано</span>
+      {% endif %}
+    </p>
+
+    <p><strong>Всего оценок: </strong> {{ ratings_count }}</p>
+    {% if ratings_count %}
+    <p><strong>Средний рейтинг: </strong>
+      {{ avg_rating|floatformat:2|default:"Нет оценок" }}</p>
+
+
+    <div class="btn-group" role="group">
+      <a href="{% url 'statistics:best' user.username %}"
+         class="btn btn-outline-primary">
+        <i class="bi bi-star-fill"></i> Лучшая оценка на товар
+      </a>
+      <a href="{% url 'statistics:worst' user.username %}"
+         class="btn btn-outline-secondary">
+        <i class="bi bi-star"></i> Худшая оценка на товар
+      </a>
+    </div>
+    {% endif %}
+    <p><strong>Попыток выпить кофе:</strong>
+     {{ user.profile.coffee_count|default:"0" }}</p>
+  </div>
+</div>
+{% endblock %}

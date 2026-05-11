@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ topic.name }} — Обучающая система{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <!-- Основная информация о теме -->
+    <div class="col-12">
+      <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">{{ topic.name }}</h2>
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <span class="badge bg-secondary">
+              Уровень сложности: {{ topic.get_complexity_display }}
+            </span>
+          </div>
+          <p class="lead">{{ topic.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Материалы лекции -->
+    <div class="col-lg-8">
+      <h3 class="mb-4">Материалы лекции</h3>
+      {% if topic.lectures.all %}
+        <div class="list-group">
+          {% for lecture in topic.lectures.all %}
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h5>{{ lecture.title }}</h5>
+                  {% if lecture.content %}
+                    <p class="text-muted mb-0">
+              {{ lecture.content|truncatewords_html:30|safe }}
+            </p>
+          {% endif %}
+        </div>
+        {% if lecture.material_file %}
+          <a href="{{ lecture.material_file.url }}" class="btn btn-outline-primary btn-sm">
+            Скачать материал
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+  Материалы по этой теме пока не загружены.
+</div>
+{% endif %}
+</div>
+
+<!-- Боковая панель с действиями -->
+<div class="col-lg-4">
+  <div class="card sticky-top" style="top: 20px;">
+    <div class="card-body">
+      <h4 class="card-title">Действия</h4>
+      <p class="card-text text-muted">
+        Изучите материалы, а затем проверьте свои знания с помощью теста.
+      </p>
+      <hr>
+      <div class="d-grid gap-2">
+        <a href="" class="btn btn-primary btn-lg">
+          Начать тест
+        </a>
+        <a href="{% url 'topics:topic_list' %}" class="btn btn-outline-secondary">
+          Вернуться к списку тем
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

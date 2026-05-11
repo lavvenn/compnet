@@ -16,6 +16,8 @@ DEBUG = is_true(os.getenv('DJANGO_DEBUG', 'false'))
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
+MAIL = ""
+
 
 
 INSTALLED_APPS = [
@@ -28,6 +30,7 @@ INSTALLED_APPS = [
     #created apps
     'homepage.apps.HomepageConfig',
     'topics.apps.TopicsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
