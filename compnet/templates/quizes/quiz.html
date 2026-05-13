@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Тест по теме "{{ topic.name }}" — Обучающая система{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Тест по теме: {{ topic.name }}</h2>
+          <p class="mb-0 text-white-50">Ответьте на 10 случайных вопросов</p>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'quizes:submit_test' %}">
+            {% csrf_token %}
+            <div class="test-questions">
+              {% for question in questions %}
+              <div class="question-block mb-4 p-3 border rounded">
+                <h5 class="question-text">{{ forloop.counter }}. {{ question.text }}</h5>
+                <div class="answers mt-2">
+                  {% for answer in question.answers.all %}
+                  <div class="form-check">
+                    <input
+              class="form-check-input"
+              type="radio"
+              name="question_{{ question.id }}"
+              id="answer_{{ answer.id }}"
+              value="{{ answer.id }}"
+            >
+            <label class="form-check-label" for="answer_{{ answer.id }}">
+              {{ answer.text }}
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="d-grid gap-2 mt-4">
+      <button type="submit" class="btn btn-success btn-lg">Завершить тест</button>
+      <a href="{% url 'topics:topic' topic.id %}" class="btn btn-outline-secondary">Вернуться к теме</a>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

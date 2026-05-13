@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'topics.apps.TopicsConfig',
     'users.apps.UsersConfig',
+    'quizes.apps.QuizesConfig',
 ]
 
 MIDDLEWARE = [

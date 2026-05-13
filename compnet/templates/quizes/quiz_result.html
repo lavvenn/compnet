@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Результаты теста — Обучающая система{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow text-center">
+        <div class="card-header bg-success text-white">
+          <h3 class="mb-0">Результаты теста</h3>
+        </div>
+        <div class="card-body">
+          <div class="result-score mb-4">
+            <h4>Ваш результат: {{ score }} из {{ total }}</h4>
+            <h5>Процент правильных ответов: {{ percentage|floatformat:1 }}%</h5>
+          </div>
+
+          <div class="progress mb-4" style="height: 20px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: {{ percentage }}%"
+              aria-valuenow="{{ percentage }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ percentage|floatformat:1 }}%
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <!-- Передаём topic_id в URL -->
+            <a href="{% url 'quizes:test_view' topic_id %}" class="btn btn-primary">Пройти тест ещё раз</a>
+            <a href="{% url 'topics:topic_list' %}" class="btn btn-outline-secondary">К списку тем</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
